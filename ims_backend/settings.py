@@ -49,21 +49,48 @@ INSTALLED_APPS = [
     'users',
     'incubator',
     'startup',
+    'corsheaders',
 
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
 STIE_ID = 1
 
+REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        #'rest_framework.permissions.IsAuthenticated',
+
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
+
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000/',
+    'hack.avikki.me'
+)
+
+CORS_ALLOW_HEADERS = (
+    'authorization',
+    'content-type',
+    'user-agent',
+)
+
 
 ROOT_URLCONF = 'ims_backend.urls'
 
