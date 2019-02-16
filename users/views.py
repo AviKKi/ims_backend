@@ -13,15 +13,14 @@ class UserReadUpdate(APIView):
     def get(self,request):
         username = request.GET.get("username")
         if not username:
-            return Response("{'msg':'Provide a username'}")
-        user = models.CustomUser.objects.filter(username=username)
-        if not user:
-            return Response("{'msg':'Invalid username'}")
-        user = user.first()
-        return Response(json.dumps(
-            {
-                "username":user.username,
-            }))
+            user = request.user
+        else:
+            user = models.CustomUser.objects.filter(username=username)
+            if not user:
+                return Response("{'msg':'Invalid username'}")
+            user = user.first()
+        res = serializers.UserSerializer(user).data
+        return Response(res)
 
     def post(self,request):
         return Response("apple")
