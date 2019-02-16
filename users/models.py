@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from datetime import datetime
 
 class CustomUser(AbstractUser):
     MENTOR = "M"
@@ -20,6 +21,6 @@ class CustomUser(AbstractUser):
     experience=models.CharField(blank=True,max_length=100)
     education=models.CharField(blank=True,max_length=200)
     approved=models.BooleanField(default=False)
-    # approved_at=models.DateTimeField(blank=True)
+    approved_at=models.DateTimeField(default=datetime(2000,1,1))
     def __str__(self):
         return self.email
