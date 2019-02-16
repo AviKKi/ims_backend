@@ -47,6 +47,8 @@ INSTALLED_APPS = [
 
     'api',
     'users',
+    'incubator',
+
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
