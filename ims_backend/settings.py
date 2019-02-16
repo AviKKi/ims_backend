@@ -78,13 +78,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'corsheaders.middleware.CorsPostCsrfMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:3000/',
+    'localhost:3000',
     'hack.avikki.me'
 )
-
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = (
     'authorization',
     'content-type',
