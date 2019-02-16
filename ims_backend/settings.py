@@ -93,6 +93,8 @@ CORS_ALLOW_HEADERS = (
     'user-agent',
 )
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 ROOT_URLCONF = 'ims_backend.urls'
 
